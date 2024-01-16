@@ -1,6 +1,6 @@
 import { OpenAIStream, StreamingTextResponse } from 'ai';
 
-// Note: There are no types for the Mistral API client yet.
+// Note: There are no types for the Mistral API client versions < 0.0.9.
 // @ts-ignore
 import MistralClient from '@mistralai/mistralai';
 
@@ -12,8 +12,7 @@ export async function POST(req: Request) {
 
   const response = await client.chatStream({
     model: 'mistral-tiny',
-    stream: true,
-    max_tokens: 1000,
+    maxTokens: 1000,
     messages,
   });
 

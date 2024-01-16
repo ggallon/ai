@@ -39,7 +39,7 @@ For this example, we'll create a route handler at `app/api/chat/route.ts` that a
 ```tsx filename="app/api/chat/route.ts" showLineNumbers
 import { OpenAIStream, StreamingTextResponse } from 'ai';
 
-// Note: There are no types for the Mistral API client yet.
+// Note: There are no types for the Mistral API client versions < 0.0.9.
 // @ts-ignore
 import MistralClient from '@mistralai/mistralai';
 
@@ -51,8 +51,7 @@ export async function POST(req: Request) {
 
   const response = await client.chatStream({
     model: 'mistral-tiny',
-    stream: true,
-    max_tokens: 1000,
+    maxTokens: 1000,
     messages,
   });
 
@@ -122,7 +121,7 @@ Similar to the Chatbot example above, we'll create a Next.js Route Handler that 
 ```tsx filename="app/api/completion/route.ts" showLineNumbers
 import { OpenAIStream, StreamingTextResponse } from 'ai';
 
-// Note: There are no types for the Mistral API client yet.
+// Note: There are no types for the Mistral API client versions < 0.0.9.
 // @ts-ignore
 import MistralClient from '@mistralai/mistralai';
 
@@ -134,8 +133,7 @@ export async function POST(req: Request) {
 
   const response = await client.chatStream({
     model: 'mistral-tiny',
-    stream: true,
-    max_tokens: 1000,
+    maxTokens: 1000,
     // use the chat completion API but only send a single prompt:
     messages: [{ role: 'user', content: prompt }],
   });
